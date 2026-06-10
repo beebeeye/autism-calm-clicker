@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+  />
+  <title>情绪安抚点击器</title>
+  <style>
+    :root {
+      --bg: #c9ddd8;
+      --text: #385a63;
+      --hint: rgba(56, 90, 99, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      overscroll-behavior: none;
+      touch-action: manipulation;
+      background: var(--bg);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "PingFang SC",
+        "Hiragino Sans GB",
+        "Microsoft YaHei",
+        sans-serif;
+    }
+
+    body {
+      position: fixed;
+      inset: 0;
+    }
+
+    .clicker {
+      width: 100vw;
+      height: 100dvh;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.24), transparent 58%),
+        var(--bg);
+      cursor: pointer;
+    }
+
+    .content {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .number {
+      color: var(--text);
+      font-size: clamp(96px, 28vw, 260px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0;
+      transform: scale(1);
+      transition: transform 160ms ease, opacity 160ms ease;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .number.bump {
+      transform: scale(1.055);
+    }
+
+    .hint {
+      margin-top: 24px;
+      color: var(--hint);
+      font-size: clamp(14px, 3.6vw, 18px);
+      line-height: 1.5;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .number {
+        transition: none;
+      }
+
+      .number.bump {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="clicker" id="clicker" aria-label="情绪安抚点击器，点击任意位置数字加一">
+    <div class="content">
+      <div class="number" id="number" aria-live="polite">0</div>
+      <div class="hint">长按 3 秒重置</div>
+    </div>
+  </main>
+
+  <script>
+    const clicker = document.getElementById("clicker");
+    const numberEl = document.getElementById("number");
+
+    let count = 0;
+    let pressTimer = null;
+    let longPressTriggered = false;
+
+    function render() {
+      numberEl.textContent = count;
+    }
+
+    function animateNumber() {
+      numberEl.classList.remove("bump");
+      void numberEl.offsetWidth;
+      numberEl.classList.add("bump");
+
+      window.setTimeout(() => {
+        numberEl.classList.remove("bump");
+      }, 160);
+    }
+
+    function increment() {
+      count += 1;
+      render();
+      animateNumber();
+    }
+
+    function reset() {
+      count = 0;
+      render();
+      animateNumber();
+    }
+
+    function startPress() {
+      longPressTriggered = false;
+
+      clearTimeout(pressTimer);
+      pressTimer = window.setTimeout(() => {
+        longPressTriggered = true;
+        reset();
+      }, 3000);
+    }
+
+    function endPress(event) {
+      clearTimeout(pressTimer);
+
+      if (longPressTriggered) {
+        event.preventDefault();
+        return;
+      }
+
+      increment();
+    }
+
+    clicker.addEventListener("pointerdown", startPress);
+    clicker.addEventListener("pointerup", endPress);
+    clicker.addEventListener("pointercancel", () => clearTimeout(pressTimer));
+    clicker.addEventListener("pointerleave", () => clearTimeout(pressTimer));
+
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+
+    let lastTouchEnd = 0;
+    document.addEventListener(
+      "touchend",
+      (event) => {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+          event.preventDefault();
+        }
+        lastTouchEnd = now;
+      },
+      { passive: false }
+    );
+  </script>
+</body>
+</html>
