@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!doctype html&gt;</p>
+<p class="p1">&lt;html lang="zh-CN"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta</p>
+<p class="p1"><span class="Apple-converted-space">    </span>name="viewport"</p>
+<p class="p1"><span class="Apple-converted-space">    </span>content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;情绪安抚点击器&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>:root {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--bg: #c9ddd8;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--text: #385a63;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--hint: rgba(56, 90, 99, 0.42);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>* {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-sizing: border-box;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>-webkit-tap-highlight-color: transparent;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>user-select: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>-webkit-user-select: none;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>html,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>overscroll-behavior: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>touch-action: manipulation;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: var(--bg);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>-apple-system,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>BlinkMacSystemFont,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>"Segoe UI",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>"PingFang SC",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>"Hiragino Sans GB",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>"Microsoft YaHei",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>inset: 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.clicker {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100vw;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 100dvh;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>place-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at center, rgba(255, 255, 255, 0.24), transparent 58%),</p>
+<p class="p1"><span class="Apple-converted-space">        </span>var(--bg);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.content {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.number {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: clamp(96px, 28vw, 260px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: scale(1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: transform 160ms ease, opacity 160ms ease;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-variant-numeric: tabular-nums;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.number.bump {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: scale(1.055);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.hint {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--hint);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: clamp(14px, 3.6vw, 18px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.5;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media (prefers-reduced-motion: reduce) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.number {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>transition: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>.number.bump {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>transform: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;main class="clicker" id="clicker" aria-label="情绪安抚点击器，点击任意位置数字加一"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="number" id="number" aria-live="polite"&gt;0&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="hint"&gt;长按 3 秒重置&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const clicker = document.getElementById("clicker");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const numberEl = document.getElementById("number");</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let count = 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let pressTimer = null;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let longPressTriggered = false;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function render() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>numberEl.textContent = count;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function animateNumber() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>numberEl.classList.remove("bump");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>void numberEl.offsetWidth;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>numberEl.classList.add("bump");</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>numberEl.classList.remove("bump");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}, 160);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function increment() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>count += 1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>render();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>animateNumber();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function reset() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>count = 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>render();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>animateNumber();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function startPress() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>longPressTriggered = false;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>clearTimeout(pressTimer);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pressTimer = window.setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>longPressTriggered = true;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>reset();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}, 3000);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function endPress(event) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>clearTimeout(pressTimer);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (longPressTriggered) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>event.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>increment();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>clicker.addEventListener("pointerdown", startPress);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>clicker.addEventListener("pointerup", endPress);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>clicker.addEventListener("pointercancel", () =&gt; clearTimeout(pressTimer));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>clicker.addEventListener("pointerleave", () =&gt; clearTimeout(pressTimer));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.addEventListener("contextmenu", (event) =&gt; event.preventDefault());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let lastTouchEnd = 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.addEventListener(</p>
+<p class="p1"><span class="Apple-converted-space">      </span>"touchend",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>(event) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const now = Date.now();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (now - lastTouchEnd &lt;= 300) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>event.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>lastTouchEnd = now;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ passive: false }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
